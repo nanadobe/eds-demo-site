@@ -122,21 +122,76 @@ export default async function decorate(block) {
   block.textContent = '';
   const nav = document.createElement('nav');
   nav.id = 'nav';
+
+  if (!fragment) return;
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const classes = ['brand', 'sections', 'tools'];
-  classes.forEach((c, i) => {
-    const section = nav.children[i];
-    if (section) section.classList.add(`nav-${c}`);
-  });
+  // Find sections by content type rather than relying on child order
+  // Brand: section containing the logo image/link
+  // Sections: section containing the main navigation ul
+  // Tools: section containing language switcher or other tools
+  const allSections = [...nav.children];
+  let navBrandEl = null;
+  let navSectionsEl = null;
+  let navToolsEl = null;
 
-  const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
+  if (allSections.length >= 3) {
+    // Standard 3-section layout
+    [navBrandEl, navSectionsEl, navToolsEl] = allSections;
+  } else if (allSections.length === 1) {
+    // Single-section: split content into brand, sections, tools
+    const section = allSections[0];
+    const wrapper = section.querySelector('.default-content-wrapper') || section;
+
+    // Extract brand (first p with picture/link)
+    const brandP = wrapper.querySelector('p:has(picture), p:has(img)');
+    if (brandP) {
+      navBrandEl = document.createElement('div');
+      navBrandEl.append(brandP);
+    }
+
+    // Extract nav list (ul with nav items)
+    const navUl = wrapper.querySelector(':scope > ul');
+    if (navUl) {
+      navSectionsEl = document.createElement('div');
+      const innerWrap = document.createElement('div');
+      innerWrap.className = 'default-content-wrapper';
+      innerWrap.append(navUl);
+      navSectionsEl.append(innerWrap);
+    }
+
+    // Extract tools (remaining p elements)
+    const remainingP = wrapper.querySelectorAll(':scope > p');
+    if (remainingP.length > 0) {
+      navToolsEl = document.createElement('div');
+      remainingP.forEach((p) => navToolsEl.append(p));
+    }
+
+    // Clear nav and re-append structured sections
+    nav.textContent = '';
+    if (navBrandEl) nav.append(navBrandEl);
+    if (navSectionsEl) nav.append(navSectionsEl);
+    if (navToolsEl) nav.append(navToolsEl);
+  } else {
+    // 2 sections: assume brand + sections
+    [navBrandEl, navSectionsEl] = allSections;
   }
 
+  // Apply nav classes
+  if (navBrandEl) navBrandEl.classList.add('nav-brand');
+  if (navSectionsEl) navSectionsEl.classList.add('nav-sections');
+  if (navToolsEl) navToolsEl.classList.add('nav-tools');
+
+  // Clean up brand link
+  if (navBrandEl) {
+    const brandLink = navBrandEl.querySelector('.button');
+    if (brandLink) {
+      brandLink.className = '';
+      brandLink.closest('.button-container').className = '';
+    }
+  }
+
+  // Decorate nav sections with dropdowns
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
