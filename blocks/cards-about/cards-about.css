@@ -3,17 +3,17 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 .cards-about > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+  overflow: hidden;
+  transition: opacity 0.2s;
 }
 
-.cards-about .cards-about-card-body {
-  margin: 16px;
+.cards-about > ul > li:hover {
+  opacity: 0.85;
 }
 
 .cards-about .cards-about-card-image {
@@ -24,4 +24,23 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  display: block;
+}
+
+.cards-about .cards-about-card-body {
+  padding: 12px 0;
+  font-size: var(--body-font-size-s);
+}
+
+.cards-about .cards-about-card-body a {
+  color: var(--background-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+@media (width >= 600px) {
+  .cards-about > ul {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
 }

@@ -1,5 +1,6 @@
 footer {
-  background-color: var(--light-color);
+  background-color: var(--dark-color);
+  color: #ccc;
   font-size: var(--body-font-size-xs);
 }
 
@@ -9,12 +10,76 @@ footer .footer > div {
   padding: 40px 24px 24px;
 }
 
+footer .footer a:any-link {
+  color: #ccc;
+  text-decoration: none;
+}
+
+footer .footer a:hover {
+  color: var(--background-color);
+}
+
+footer .footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* social links row */
+footer .footer > div:nth-child(2) ul {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+}
+
+/* legal links row */
+footer .footer > div:last-child ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding: 16px 0;
+}
+
+/* nav columns */
+footer .footer > div:first-child > ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+footer .footer > div:first-child > ul > li > strong a {
+  color: var(--background-color);
+  font-size: var(--body-font-size-s);
+}
+
+footer .footer > div:first-child > ul > li > ul {
+  margin-top: 8px;
+}
+
+footer .footer > div:first-child > ul > li > ul > li {
+  padding: 4px 0;
+}
+
 footer .footer p {
   margin: 0;
+  color: #999;
+  font-size: var(--body-font-size-xs);
+}
+
+@media (width >= 600px) {
+  footer .footer > div:first-child > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (width >= 900px) {
   footer .footer > div {
     padding: 40px 32px 24px;
+  }
+
+  footer .footer > div:first-child > ul {
+    grid-template-columns: repeat(4, 1fr);
   }
 }

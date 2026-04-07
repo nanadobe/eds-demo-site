@@ -1,19 +1,27 @@
+.cards-spotlight-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
 .cards-spotlight > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
 .cards-spotlight > ul > li {
-  border: 1px solid #dadada;
+  border: 1px solid var(--border-color);
   background-color: var(--background-color);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
 }
 
-.cards-spotlight .cards-spotlight-card-body {
-  margin: 16px;
+.cards-spotlight > ul > li:hover {
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
 }
 
 .cards-spotlight .cards-spotlight-card-image {
@@ -22,6 +30,27 @@
 
 .cards-spotlight > ul > li img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+}
+
+.cards-spotlight .cards-spotlight-card-body {
+  padding: 16px;
+  font-size: var(--body-font-size-s);
+}
+
+.cards-spotlight .cards-spotlight-card-body a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.cards-spotlight .cards-spotlight-card-body a:hover {
+  color: var(--brand-red);
+}
+
+@media (width >= 600px) {
+  .cards-spotlight > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
