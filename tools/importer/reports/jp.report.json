@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.marubeni.com/jp/",
+  "path": "jp",
+  "timestamp": "2026-04-07T06:11:33.281Z",
+  "title": "丸紅株式会社",
+  "template": "homepage",
+  "blocks": [
+    "hero-carousel",
+    "cards-spotlight",
+    "tabs-news",
+    "hero-banner",
+    "cards-about",
+    "cards-banner"
+  ]
+}
