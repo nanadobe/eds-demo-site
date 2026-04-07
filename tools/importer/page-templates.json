@@ -1,0 +1,161 @@
+{
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": [
+        "https://www.marubeni.com/jp/"
+      ],
+      "description": "Corporate homepage with hero carousel, news feed, card grids, and promotional banners",
+      "blocks": [
+        {
+          "name": "hero-carousel",
+          "instances": [
+            ".p-home__hero"
+          ]
+        },
+        {
+          "name": "cards-spotlight",
+          "instances": [
+            ".p-home__spotlight .c-card-list"
+          ]
+        },
+        {
+          "name": "tabs-news",
+          "instances": [
+            ".p-home__news .c-tabs"
+          ]
+        },
+        {
+          "name": "hero-banner",
+          "instances": [
+            ".p-home__message"
+          ]
+        },
+        {
+          "name": "cards-about",
+          "instances": [
+            ".p-home__about .c-card-list"
+          ]
+        },
+        {
+          "name": "cards-banner",
+          "instances": [
+            ".p-home__banner.c-card-list"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Hero Carousel",
+          "selector": ".p-home__hero",
+          "style": null,
+          "blocks": [
+            "hero-carousel"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Spotlight Cards",
+          "selector": ".p-home__spotlight",
+          "style": null,
+          "blocks": [
+            "cards-spotlight"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-3",
+          "name": "News Section",
+          "selector": ".p-home__news",
+          "style": null,
+          "blocks": [
+            "tabs-news"
+          ],
+          "defaultContent": [
+            ".p-home__news-heading",
+            ".p-home__news-more"
+          ]
+        },
+        {
+          "id": "section-4",
+          "name": "Important Notice",
+          "selector": ".p-home__important",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".p-home__important"
+          ]
+        },
+        {
+          "id": "section-5",
+          "name": "Presidents Message",
+          "selector": ".p-home__message",
+          "style": null,
+          "blocks": [
+            "hero-banner"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-6",
+          "name": "About Marubeni",
+          "selector": ".p-home__about",
+          "style": "dark",
+          "blocks": [
+            "cards-about"
+          ],
+          "defaultContent": [
+            ".p-home__about-heading"
+          ]
+        },
+        {
+          "id": "section-7",
+          "name": "Banner Grid",
+          "selector": ".p-home__banner",
+          "style": null,
+          "blocks": [
+            "cards-banner"
+          ],
+          "defaultContent": []
+        }
+      ]
+    },
+    {
+      "name": "hub-index-page",
+      "urls": [
+        "https://www.marubeni.com/jp/company/",
+        "https://www.marubeni.com/jp/business/",
+        "https://www.marubeni.com/jp/ir/"
+      ],
+      "description": "Hub/index page with hero banner and card grid navigation to child pages",
+      "blocks": []
+    },
+    {
+      "name": "article-page",
+      "urls": [
+        "https://www.marubeni.com/jp/company/message/",
+        "https://www.marubeni.com/jp/company/plan/"
+      ],
+      "description": "Article/message page with hero image and long-form text content",
+      "blocks": []
+    },
+    {
+      "name": "news-listing-page",
+      "urls": [
+        "https://www.marubeni.com/jp/news/"
+      ],
+      "description": "News listing page with category/year filters, keyword search, and date-grouped news items",
+      "blocks": []
+    },
+    {
+      "name": "feature-story-page",
+      "urls": [
+        "https://www.marubeni.com/jp/brand_media/scope/it-digitalsolutions/"
+      ],
+      "description": "Feature/case study page with video hero, narrative text, and case studies with images",
+      "blocks": []
+    }
+  ]
+}

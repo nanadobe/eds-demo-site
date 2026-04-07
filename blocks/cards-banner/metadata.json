@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-banner",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-04-07T05:50:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.marubeni.com/jp/",
+    "originPage": "corporate homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "banner-grid",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + title link (multi-row grid)",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "promotional banner grids",
+      "resource link grids",
+      "multi-item navigation grids"
+    ],
+    "notSuitableFor": [
+      "featured spotlight cards",
+      "dark background sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/jp/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-04-07T05:50:00.000Z"
+  }
+}

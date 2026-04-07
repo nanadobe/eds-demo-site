@@ -1,0 +1,38 @@
+{
+  "variantName": "hero-banner",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-04-07T05:50:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.marubeni.com/jp/",
+    "originPage": "corporate homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "promotional-banner",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + description text + CTA link",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "promotional banner sections",
+      "president/CEO message banners",
+      "featured content with CTA"
+    ],
+    "notSuitableFor": [
+      "hero carousels with multiple slides",
+      "text-only hero sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/jp/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-04-07T05:50:00.000Z"
+  }
+}

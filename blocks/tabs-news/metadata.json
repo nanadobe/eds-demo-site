@@ -1,0 +1,38 @@
+{
+  "variantName": "tabs-news",
+  "baseBlock": "tabs",
+  "version": "1.0.0",
+  "created": "2026-04-07T05:50:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.marubeni.com/jp/",
+    "originPage": "corporate homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "news-tabs",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "tab labels + news items (date + category + title)",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "news listing with category tabs",
+      "tabbed content with date-stamped items",
+      "multi-category content organization"
+    ],
+    "notSuitableFor": [
+      "accordion-style collapsible content",
+      "tabs with heavy media content"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/jp/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-04-07T05:50:00.000Z"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "variantName": "hero-carousel",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-04-07T05:50:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.marubeni.com/jp/",
+    "originPage": "corporate homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "hero-carousel",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "video/image slides + overlay link text",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "homepage hero sections",
+      "landing pages with rotating content",
+      "pages with video hero"
+    ],
+    "notSuitableFor": [
+      "text-only hero sections",
+      "simple static hero banners"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/jp/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-04-07T05:50:00.000Z"
+  }
+}
