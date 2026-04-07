@@ -1,0 +1,174 @@
+diff --git a/blocks/footer/footer.css b/blocks/footer/footer.css
+index b6a9550..a97d9eb 100644
+--- a/blocks/footer/footer.css
++++ b/blocks/footer/footer.css
+@@ -25,40 +25,42 @@ footer .footer ul {
+   margin: 0;
+ }
+ 
+-/* social links row */
+-footer .footer > div:nth-child(2) ul {
++/* main nav columns */
++footer .footer .default-content-wrapper > ul:first-child {
++  display: grid;
++  grid-template-columns: 1fr;
++  gap: 24px;
++}
++
++footer .footer .default-content-wrapper > ul:first-child > li > p > strong a {
++  color: var(--background-color);
++  font-size: var(--body-font-size-s);
++}
++
++/* social links */
++footer .footer .default-content-wrapper > ul:nth-child(2) {
+   display: flex;
+   gap: 16px;
+   padding: 16px 0;
++  margin-top: 24px;
+   border-top: 1px solid #444;
+   border-bottom: 1px solid #444;
+ }
+ 
+-/* legal links row */
+-footer .footer > div:last-child ul {
++/* legal links */
++footer .footer .default-content-wrapper > ul:nth-child(3) {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 8px 16px;
+   padding: 16px 0;
+ }
+ 
+-/* nav columns */
+-footer .footer > div:first-child > ul {
+-  display: grid;
+-  grid-template-columns: 1fr;
+-  gap: 24px;
+-}
+-
+-footer .footer > div:first-child > ul > li > strong a {
+-  color: var(--background-color);
+-  font-size: var(--body-font-size-s);
+-}
+-
+-footer .footer > div:first-child > ul > li > ul {
++/* nested sub-lists inside nav columns */
++footer .footer .default-content-wrapper > ul:first-child > li > ul {
+   margin-top: 8px;
+ }
+ 
+-footer .footer > div:first-child > ul > li > ul > li {
++footer .footer .default-content-wrapper > ul:first-child > li > ul > li {
+   padding: 4px 0;
+ }
+ 
+@@ -69,7 +71,7 @@ footer .footer p {
+ }
+ 
+ @media (width >= 600px) {
+-  footer .footer > div:first-child > ul {
++  footer .footer .default-content-wrapper > ul:first-child {
+     grid-template-columns: repeat(2, 1fr);
+   }
+ }
+@@ -79,7 +81,7 @@ footer .footer p {
+     padding: 40px 32px 24px;
+   }
+ 
+-  footer .footer > div:first-child > ul {
++  footer .footer .default-content-wrapper > ul:first-child {
+     grid-template-columns: repeat(4, 1fr);
+   }
+ }
+diff --git a/blocks/header/header.js b/blocks/header/header.js
+index c7d6ea2..98ce7af 100644
+--- a/blocks/header/header.js
++++ b/blocks/header/header.js
+@@ -122,21 +122,76 @@ export default async function decorate(block) {
+   block.textContent = '';
+   const nav = document.createElement('nav');
+   nav.id = 'nav';
++
++  if (!fragment) return;
+   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
+ 
+-  const classes = ['brand', 'sections', 'tools'];
+-  classes.forEach((c, i) => {
+-    const section = nav.children[i];
+-    if (section) section.classList.add(`nav-${c}`);
+-  });
++  // Find sections by content type rather than relying on child order
++  // Brand: section containing the logo image/link
++  // Sections: section containing the main navigation ul
++  // Tools: section containing language switcher or other tools
++  const allSections = [...nav.children];
++  let navBrandEl = null;
++  let navSectionsEl = null;
++  let navToolsEl = null;
++
++  if (allSections.length >= 3) {
++    // Standard 3-section layout
++    [navBrandEl, navSectionsEl, navToolsEl] = allSections;
++  } else if (allSections.length === 1) {
++    // Single-section: split content into brand, sections, tools
++    const section = allSections[0];
++    const wrapper = section.querySelector('.default-content-wrapper') || section;
++
++    // Extract brand (first p with picture/link)
++    const brandP = wrapper.querySelector('p:has(picture), p:has(img)');
++    if (brandP) {
++      navBrandEl = document.createElement('div');
++      navBrandEl.append(brandP);
++    }
++
++    // Extract nav list (ul with nav items)
++    const navUl = wrapper.querySelector(':scope > ul');
++    if (navUl) {
++      navSectionsEl = document.createElement('div');
++      const innerWrap = document.createElement('div');
++      innerWrap.className = 'default-content-wrapper';
++      innerWrap.append(navUl);
++      navSectionsEl.append(innerWrap);
++    }
+ 
+-  const navBrand = nav.querySelector('.nav-brand');
+-  const brandLink = navBrand.querySelector('.button');
+-  if (brandLink) {
+-    brandLink.className = '';
+-    brandLink.closest('.button-container').className = '';
++    // Extract tools (remaining p elements)
++    const remainingP = wrapper.querySelectorAll(':scope > p');
++    if (remainingP.length > 0) {
++      navToolsEl = document.createElement('div');
++      remainingP.forEach((p) => navToolsEl.append(p));
++    }
++
++    // Clear nav and re-append structured sections
++    nav.textContent = '';
++    if (navBrandEl) nav.append(navBrandEl);
++    if (navSectionsEl) nav.append(navSectionsEl);
++    if (navToolsEl) nav.append(navToolsEl);
++  } else {
++    // 2 sections: assume brand + sections
++    [navBrandEl, navSectionsEl] = allSections;
++  }
++
++  // Apply nav classes
++  if (navBrandEl) navBrandEl.classList.add('nav-brand');
++  if (navSectionsEl) navSectionsEl.classList.add('nav-sections');
++  if (navToolsEl) navToolsEl.classList.add('nav-tools');
++
++  // Clean up brand link
++  if (navBrandEl) {
++    const brandLink = navBrandEl.querySelector('.button');
++    if (brandLink) {
++      brandLink.className = '';
++      brandLink.closest('.button-container').className = '';
++    }
+   }
+ 
++  // Decorate nav sections with dropdowns
+   const navSections = nav.querySelector('.nav-sections');
+   if (navSections) {
+     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
